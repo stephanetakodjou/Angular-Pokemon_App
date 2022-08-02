@@ -1,0 +1,57 @@
+<!-- #input est une variable referencée -->
+
+<!-- <h1>Liste de Pokémons </h1>
+<input 
+      #input
+      (keyup.enter)="selectPokemon(input.value)"
+      
+      type="number"
+    
+      />
+<p *ngIf="pokemonSelected">
+  Vous avez sélectionné le Pokémon :{{ pokemonSelected?.name }}
+</p>
+<p *ngIf="!pokemonSelected">
+  Aucun Pokémon n'a été trouvé
+</p> 
+<p *ngFor=" let Pokemon of pokemonList">
+   {{ Pokemon.name}}
+</p> -->
+
+
+<div class='container'>
+<div class="row">
+
+  <app-search-pokemon></app-search-pokemon>
+    
+<div *ngFor='let pokemon of pokemonList' class="col s6 m4">
+  <!-- <div *ngIf="!pokemon" class="center">
+    <app-loader></app-loader>
+
+  </div> -->
+  <div class="card horizontal" (click)="goToPokemon(pokemon)" appBorderCard>
+    <div class="card-image">
+      <img [src]="pokemon.picture">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <p>{{ pokemon.name }}</p>
+        <p><small>{{ pokemon.created | date}}</small></p>
+        <span 
+            *ngFor="let type of pokemon.types"
+            class="{{ type | pokemonTypeColor}}">
+          
+            {{ type }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<a routerLink="/pokemon/add"
+  style="position: fixed; bottom: 25px; right:25px; "
+  class="btn-floating btn-large z-depth-3 waves-effect waves-light red">
+    <i class="material-icons">+</i>
+</a>
